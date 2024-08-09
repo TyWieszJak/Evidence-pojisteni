@@ -1,31 +1,15 @@
 """
-Tady budeme vytvaret pojisteneho, ktery bude obsahovat:
+Budeme vytvaret pojisteneho, ktery bude obsahovat:
 jmeno
 vek
 telefonni cislo
-
 Ma to umiet vypsat vsechny pojistene.
 A aby se dalo vyhledat podle jmena.
-"""
-
-"""
 Dane entity jsou ulozeny  kolekci v pameti
-"""
-
-"""
 Validace prazdneho jmena ( len() )
 """
 from Seznam_pojistencu import Dane_pojistencu
 class Evidence_pojistenych(Dane_pojistencu):
-    """
-    seznam = []
-
-    def __init__(self,jmeno,prijmeni,telefonni_cislo,vek):
-        self._jmeno = jmeno
-        self._prijmeni = prijmeni
-        self._telefonni_cislo = telefonni_cislo
-        self._vek = vek
-    """
     def pridani_pojisteneho(self):
         def ziskat_platny_vstup(potrebny_vstup):
             while True:
