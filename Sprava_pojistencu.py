@@ -36,7 +36,7 @@ class Evidence_pojistenych(Dane_pojistencu):
                 return
 
 
-        # Uklada vstup do seznamu.
+        # Uklada vstup do slovniku.
         Evidence_pojistenych.seznam.append({
             'jmeno': self._jmeno,
             'prijmeni': self._prijmeni,
