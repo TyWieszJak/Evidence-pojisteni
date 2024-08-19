@@ -1,3 +1,4 @@
+from re import match
 
 from Sprava_pojistencu import Evidence_pojistenych
 
@@ -11,26 +12,26 @@ class Urivatelske_prostredi():
         self.evidence = Evidence_pojistenych()
 
     def nabidka_voleb(self):
-        while True:
+        while match :
             print("Vyberte si akci:")
             print("1 - Pridat nového pojisteného")
             print("2 - Vypsat vsechny pojistené")
             print("3 - Vyhledat pojisteného")
             print("4 - Konec")
-            #prehod = Evidence_pojistenych()
             try:
                 volba = int(input())
                 match volba:
                     case 1:
-                        jmeno = self.ziskat_platny_vstup("jméno")
-                        prijmeni = self.ziskat_platny_vstup("příjmení")
-                        telefonni_cislo = self.ziskat_platny_vstup("telefonní číslo")
-                        vek = self.ziskat_platny_vstup("věk")
-                        self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
+                        self.ziskat_platny_vstup()
+                        print("Data byla uložena.")
+                        self.vypis()
                     case 2:
-                        self.evidence.vypsat_vsechny_pojistene()
+                        pojistenci = self.evidence.vypsat_vsechny_pojistene()
+                        for pojistenec in pojistenci:
+                            print(pojistenec)
+                        self.vypis()
                     case 3:
-                        self.evidence.vyhledani_pojisteneho()
+                        self.ziskani_vstupu_pro_vyhledavani()
                     case 4:
                         self.ukonceni_programu()
                     case _:
@@ -49,16 +50,41 @@ class Urivatelske_prostredi():
             else:
                 print("Neplatny přikaz, musite zadat ano / ne")
 
-    def ziskat_platny_vstup(self,potrebny_vstup):
+    def ziskat_platny_vstup(self):
         while True:
-            # Kontroluje delku vstupu.
-            vstup = input(f"Zadejte {potrebny_vstup}:\n").strip()
+            # Získává jednotlivé vstupy od uživatele
+            jmeno = self.kontrola_delky_vstupu("jméno")
+            prijmeni = self.kontrola_delky_vstupu("příjmení")
+            telefonni_cislo = self.kontrola_delky_vstupu("telefonní číslo")
+            vek = self.kontrola_delky_vstupu("věk")
+
+            # Předává vstupy metodě pridani_pojisteneho
+            vysledek = self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
+
+            return vysledek
+
+    def kontrola_delky_vstupu(self, vstupni_slovo):
+        while True:
+            vstup = input(f"Zadejte {vstupni_slovo}:\n").strip()   # Kontroluje délku vstupu
             if len(vstup) > 0:
                 return vstup
             else:
-                print(f"{potrebny_vstup} je příliš krátké. Zadejte prosím znovu.")
+                print(f"{vstupni_slovo} je příliš krátké. Zadejte prosím znovu.")
 
+    def ziskani_vstupu_pro_vyhledavani(self):
 
+        hledane_jmeno = input("Zadejte jméno osoby:\n").strip()
+        hledane_prijmeni = input("Zadejte příjmení osoby:\n").strip()
+        nalezena_osoba = self.evidence.vyhledani_pojisteneho(hledane_jmeno, hledane_prijmeni)
+        if nalezena_osoba:
+            print(f"Nalezena osoba: {nalezena_osoba}")
 
+        else:
+            print(f"Osoba: {hledane_jmeno} {hledane_prijmeni} nebyla nalezena.")
+        self.vypis()
 
-
+    def vypis(self):
+        print()
+        print()
+        print("Pokračujte libovolnou klavesou")
+        input()

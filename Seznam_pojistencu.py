@@ -1,4 +1,4 @@
-#from Urivatelske_prostredi import Urivatelske_prostredi
+
 class Dane_pojistenca:
         def __init__(self,jmeno,prijmeni,telefonni_cislo,vek):
             self._jmeno = jmeno
