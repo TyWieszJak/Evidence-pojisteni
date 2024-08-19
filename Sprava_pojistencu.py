@@ -7,10 +7,11 @@ Ma to umiet vypsat vsechny pojistene.
 A aby se dalo vyhledat podle jmena.
 Dane entity jsou ulozeny  kolekci v pameti
 Validace prazdneho jmena ( len() )
-12.8.2024 - pridat inputy a vstupy k UI
-          - dane pojistencu prejmenovat na pojistenec
-          - vypisovat prez str a udelat instanci k tomu
-          - predelat spravu pojistencu kde bude v init pouze seznam , seznam pojistencu smazat zeznam a pidat str
+12.8.2024 - pridano inputy k UI
+          - zmena nazvu dane pojistencu  na pojistenec
+          - vypisovani prez str
+          - pridani v evidenci pojistenych v init seznam
+
 """
 from Seznam_pojistencu import Dane_pojistenca
 class Evidence_pojistenych():

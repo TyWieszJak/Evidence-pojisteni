@@ -2,7 +2,7 @@
 from Sprava_pojistencu import Evidence_pojistenych
 
 print("-" * 30)
-print(f"{"Evidence pojistenych":>25}")
+print(f"{'Evidence pojistenych':>25}")
 print("-"* 30)
 
 class Urivatelske_prostredi():
