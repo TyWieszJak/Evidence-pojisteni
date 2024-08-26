@@ -1,4 +1,7 @@
+from Sprava_pojistencu import Evidence_pojistenych
 from Urivatelske_prostredi import Urivatelske_prostredi
 
-UI = Urivatelske_prostredi()
-UI.nabidka_voleb()
+if __name__ == "__main__":
+    evidence = Evidence_pojistenych()
+    UI = Urivatelske_prostredi(evidence)
+    UI.nabidka_voleb()

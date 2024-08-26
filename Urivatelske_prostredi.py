@@ -8,11 +8,11 @@ print("-"* 30)
 
 class Urivatelske_prostredi():
 
-    def __init__(self):
-        self.evidence = Evidence_pojistenych()
+    def __init__(self, evidence = Evidence_pojistenych):
+        self.evidence = evidence
 
     def nabidka_voleb(self):
-        while match :
+        while True :
             print("Vyberte si akci:")
             print("1 - Pridat nového pojisteného")
             print("2 - Vypsat vsechny pojistené")
@@ -59,9 +59,9 @@ class Urivatelske_prostredi():
             vek = self.kontrola_delky_vstupu("věk")
 
             # Předává vstupy metodě pridani_pojisteneho
-            vysledek = self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
+            self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
 
-            return vysledek
+            return
 
     def kontrola_delky_vstupu(self, vstupni_slovo):
         while True:
@@ -88,3 +88,4 @@ class Urivatelske_prostredi():
         print()
         print("Pokračujte libovolnou klavesou")
         input()
+

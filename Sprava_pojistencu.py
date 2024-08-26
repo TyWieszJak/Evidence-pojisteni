@@ -1,23 +1,5 @@
-"""
-Budeme vytvaret pojisteneho, ktery bude obsahovat:
-jmeno
-vek
-telefonni cislo
-Ma to umiet vypsat vsechny pojistene.
-A aby se dalo vyhledat podle jmena.
-Dane entity jsou ulozeny  kolekci v pameti
-Validace prazdneho jmena ( len() )
-12.8.2024 - pridano inputy k UI
-          - zmena nazvu dane pojistencu  na pojistenec
-          - vypisovani prez str
-          - pridani v evidenci pojistenych v init seznam
-19.8.2024 - pridat vsechny inputy k UI, vymienit printy za vyimkioky , try,raise , nebo str.
-          - zkusit pridat seznam nebo evidence jako atribut
 
-"""
 from Seznam_pojistencu import Dane_pojistenca
-
-
 
 class Evidence_pojistenych():
     def __init__(self,seznam = []):
