@@ -27,6 +27,7 @@ class Urivatelske_prostredi():
                         self.vypis()
                     case 2:
                         pojistenci = self.evidence.vypsat_vsechny_pojistene()
+                       # print(f"{"Jmeno":<10}  {"Prijmeni":<10} {"Telefonni_cislo":<10}  {"Vek":>3}\n")
                         for pojistenec in pojistenci:
                             print(pojistenec)
                         self.vypis()
@@ -59,6 +60,10 @@ class Urivatelske_prostredi():
             vek = self.kontrola_delky_vstupu("věk")
 
             # Předává vstupy metodě pridani_pojisteneho
+            for osoba in self.evidence.seznam:  # Kontroluje, zda jsou jméno a příjmení nebo telefonní číslo duplicitní.
+                if (osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower()) or \
+                        osoba.telefonni_cislo == telefonni_cislo:
+                    print (f"Osoba s tímto jménem a příjmením nebo telefonním číslem již existuje.")
             self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
 
             return
