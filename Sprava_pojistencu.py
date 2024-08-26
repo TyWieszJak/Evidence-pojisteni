@@ -2,7 +2,7 @@
 from Seznam_pojistencu import Dane_pojistenca
 
 class Evidence_pojistenych():
-    def __init__(self,seznam = []):
+    def __init__(self,seznam):
 
             self.seznam = seznam
 
