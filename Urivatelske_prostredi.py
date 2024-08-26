@@ -8,7 +8,7 @@ print("-"* 30)
 
 class Urivatelske_prostredi():
 
-    def __init__(self, evidence = Evidence_pojistenych):
+    def __init__(self, evidence):
         self.evidence = evidence
 
     def nabidka_voleb(self):
