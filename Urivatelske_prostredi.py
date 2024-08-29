@@ -16,14 +16,14 @@ class Urivatelske_prostredi():
     def nabidka_voleb(self):
         """
         Tato metoda zobrazuje uživateli menu a na základě jeho volby provádí příslušnou akci.
-        :return:
         """
         while True :
             print("Vyberte si akci:")
             print("1 - Pridat nového pojisteného")
             print("2 - Vypsat vsechny pojistené")
             print("3 - Vyhledat pojisteného")
-            print("4 - Konec")
+            print("4 - Odebrani pojisteného")
+            print("5 - Konec")
             try:
                 volba = int(input())
                 match volba:
@@ -39,6 +39,22 @@ class Urivatelske_prostredi():
                     case 3:
                         self.ziskani_vstupu_pro_vyhledavani()
                     case 4:
+                        jmeno,prijmeni = self.ziskani_vstupu_pro_vyhledavani()
+                        if jmeno and  prijmeni != None :
+                            while True:
+                                odpoved = input("\nOpravdu chceš odebrat pojištěného? ano / ne: ").lower()
+                                if odpoved == "ano":
+                                    self.evidence.odebrani_pojisteneho(jmeno,prijmeni)
+                                    print(f"Osoba {jmeno} {prijmeni} byla úspěšně odstraněna.")
+                                    self.vypis()
+                                    break
+                                elif odpoved == "ne":
+                                    break
+                                else:
+                                    print("Neplatny přikaz, musite zadat ano / ne")
+
+
+                    case 5:
                         self.ukonceni_programu()
                     case _:
                         print("Neplatná volba.")
@@ -50,8 +66,8 @@ class Urivatelske_prostredi():
     def ziskat_platny_vstup(self):
         """
         Získává jednotlivé vstupy od uživatele.
-        Předává vstupy metodě pridani_pojisteneho
-        :return:
+        Předává vstupy metodě pridani_pojisteneho.
+        Kontroluje zda jméno, příjmení nebo telefonní číslo nejsou duplicitní.
         """
         while True:
             jmeno = self.kontrola_delky_a_typu_dat("jméno", pouze_text= True)
@@ -59,6 +75,11 @@ class Urivatelske_prostredi():
             telefonni_cislo = self.kontrola_delky_a_typu_dat("telefonní číslo", pouze_cisla= True)
             vek = self.kontrola_delky_a_typu_dat("věk", pouze_cisla= True)
 
+            for osoba in self.evidence.seznam:
+                if (osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower()) or \
+                        osoba.telefonni_cislo == telefonni_cislo:
+                    print(f"Osoba s tímto jménem a příjmením nebo telefonním číslem již existuje.")
+                    return
             self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
 
             return
@@ -67,10 +88,6 @@ class Urivatelske_prostredi():
         """
         Kontroluje délku vstupu. Kontroluje, zda je vstup text nebo cislo nebo mezery.
         Povoluje pouze písmena a mezery nebo cisla a mezery.
-        :param vstupni_slovo:
-        :param pouze_text:
-        :param pouze_cisla:
-        :return:
         """
         while True:
             vstup = input(f"Zadejte {vstupni_slovo}:\n").strip()   # Kontroluje délku vstupu
@@ -94,8 +111,7 @@ class Urivatelske_prostredi():
 
     def ziskani_vstupu_pro_vyhledavani(self):
         """
-        Získává vstup pro metodu vyhledání pojištěného.
-        :return:
+        Získává vstup pro metodu vyhledání pojištěného a odbrani pojisteneho.
         """
 
         hledane_jmeno = input("Zadejte jméno osoby:\n").strip()
@@ -103,10 +119,12 @@ class Urivatelske_prostredi():
         nalezena_osoba = self.evidence.vyhledani_pojisteneho(hledane_jmeno, hledane_prijmeni)
         if nalezena_osoba:
             print(f"Nalezena osoba: {nalezena_osoba}")
-
+            self.vypis()
+            return hledane_jmeno,hledane_prijmeni
         else:
-            print(f"Osoba: {hledane_jmeno} {hledane_prijmeni} nebyla nalezena.")
+            print(f"Osoba {hledane_jmeno} {hledane_prijmeni} nebyla nalezena.")
         self.vypis()
+        return None,None
 
     def ukonceni_programu(self):
         while True:
