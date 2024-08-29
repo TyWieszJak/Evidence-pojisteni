@@ -61,7 +61,9 @@ class Urivatelske_prostredi():
 
             except ValueError:
                     print("Neplatná volba.")
-
+            except KeyboardInterrupt:
+                print("\nProgram byl přerušen. Ukončuji.")
+                break
 
     def ziskat_platny_vstup(self):
         """
