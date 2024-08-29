@@ -21,15 +21,6 @@ class Evidence_pojistenych():
         """
 
         novy_pojistenec = Dane_pojistenca(jmeno, prijmeni, telefonni_cislo, vek)
-
-
-        for osoba in self.seznam:  # Kontroluje, zda jsou jméno a příjmení nebo telefonní číslo duplicitní.
-            if (osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower()) or \
-                    osoba.telefonni_cislo == telefonni_cislo:
-                print(f"Osoba s tímto jménem a příjmením nebo telefonním číslem již existuje.")
-                return
-
-
         self.seznam.append(novy_pojistenec)  # Uklada vstup do seznamu.
 
 
