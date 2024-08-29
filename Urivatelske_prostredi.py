@@ -1,6 +1,3 @@
-from re import match
-
-from Sprava_pojistencu import Evidence_pojistenych
 import re # import re pro regularni vyrazy
 
 print("-" * 30)
