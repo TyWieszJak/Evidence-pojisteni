@@ -13,11 +13,6 @@ class Evidence_pojistenych():
         """
         Metoda získává data z uživatelského rozhraní a kontroluje.
         Přidává záznam do seznamu.
-        :param jmeno:
-        :param prijmeni:
-        :param telefonni_cislo:
-        :param vek:
-        :return:
         """
 
         novy_pojistenec = Dane_pojistenca(jmeno, prijmeni, telefonni_cislo, vek)
@@ -42,9 +37,6 @@ class Evidence_pojistenych():
     def vyhledani_pojisteneho(self,hledane_jmeno,hledane_prijmeni):
         """
         Kontrola jmena  a příjmení. A vyhledani v seznamu.
-        :param hledane_jmeno:
-        :param hledane_prijmeni:
-        :return:
         """
         for osoba in self.seznam: # Program zkontroluje, zda má aktuální osoba vyplněné jméno a příjmení. Pokud ano, pokračuje dál.
             if osoba.jmeno and osoba.prijmeni:
