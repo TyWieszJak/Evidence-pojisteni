@@ -1,5 +1,10 @@
 
 class Dane_pojistenca:
+        """
+        Třída slouží k ukládání informací o pojištěnci, jméno, příjmení,
+        telefonní číslo a věk. Obsahuje metody pro získání těchto atributů a umožňuje
+        vrátit informace o pojištěnci.
+        """
         def __init__(self,jmeno,prijmeni,telefonni_cislo,vek):
             self._jmeno = jmeno
             self._prijmeni = prijmeni
@@ -24,3 +29,4 @@ class Dane_pojistenca:
 
         def __str__(self):
             return f"{self.jmeno:<10}  {self.prijmeni:<10} {self.telefonni_cislo:<10}  {self.vek:>3}"
+
