@@ -113,7 +113,7 @@ class Urivatelske_prostredi():
 
     def ziskani_vstupu_pro_vyhledavani(self):
         """
-        Získává vstup pro metodu vyhledání pojištěného a odbrani pojisteneho.
+        Získává vstup pro metodu vyhledání pojištěného a odebrani pojisteneho.
         """
 
         hledane_jmeno = input("Zadejte jméno osoby:\n").strip()
