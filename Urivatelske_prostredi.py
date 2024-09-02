@@ -52,8 +52,6 @@ class Urivatelske_prostredi():
                                     break
                                 else:
                                     print("Neplatny přikaz, musite zadat ano / ne")
-
-
                     case 5:
                         self.ukonceni_programu()
                     case _:
