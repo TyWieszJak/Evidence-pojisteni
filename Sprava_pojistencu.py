@@ -22,10 +22,10 @@ class Evidence_pojistenych():
         """
         Odebírá pojištěného podle zadaných parametrů.
         """
-        osoba = self.najdi_pojistence()
-        for osoba in self.seznam:
-                self.seznam.remove(osoba)
-                return osoba
+        osoba = self.najdi_pojistence(jmeno,prijmeni)
+        if osoba:
+            self.seznam.remove(osoba)
+            return osoba
 
     def vypsat_vsechny_pojistene(self):
             """

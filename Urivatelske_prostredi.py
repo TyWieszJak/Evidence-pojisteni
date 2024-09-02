@@ -72,7 +72,6 @@ class Urivatelske_prostredi():
                     print(f"Osoba s tímto jménem a příjmením nebo telefonním číslem již existuje.")
                     return
             self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
-
             return
 
     def kontrola_delky_a_typu_dat(self, vstupni_slovo, pouze_text = False, pouze_cisla = False):
@@ -128,9 +127,6 @@ class Urivatelske_prostredi():
         nalezena_osoba = self.evidence.vyhledani_pojisteneho(jmeno,prijmeni)
 
         if nalezena_osoba:
-
-       #  print(f"Nalezena osoba: {nalezena_osoba}")
-
             while True:
                 print("Co chcete upravit?")
                 print("1 - Jméno")
@@ -169,31 +165,36 @@ class Urivatelske_prostredi():
                     print("\nProgram byl přerušen. Ukončuji.")
                     break
 
-
     def odstraneni_pojisteneho(self):
+
         jmeno, prijmeni = self.ziskani_vstupu_pro_vyhledavani()
-        if jmeno and prijmeni != None:
-            while True:
-                odpoved = input(f"\nOpravdu chceš odebrat pojištěného {jmeno} {prijmeni} ? ano / ne: ").lower()
-                if odpoved == "ano":
-                    self.evidence.odebrani_pojisteneho(jmeno, prijmeni)
+
+        if jmeno and prijmeni:
+            if self.potvrdit_akci(f"Opravdu chceš odebrat pojištěného {jmeno} {prijmeni}?"):
+                odstranena_osoba = self.evidence.odebrani_pojisteneho(jmeno, prijmeni)
+                if odstranena_osoba:
                     print(f"Osoba {jmeno} {prijmeni} byla úspěšně odstraněna.")
-                    self.vypis()
-                    break
-                elif odpoved == "ne":
-                    break
                 else:
-                    print("Neplatny přikaz, musite zadat ano / ne")
+                    print(f"Osoba {jmeno} {prijmeni} nebyla nalezena.")
+                self.vypis()
 
     def ukonceni_programu(self):
+        if self.potvrdit_akci("Opravdu chceš ukončit program?"):
+            print("Program byl úspěšně ukončen.")
+            exit()
+
+    def potvrdit_akci(self, zprava):
+        """
+        Zobrazí zprávu a požádá uživatele o potvrzení akce.
+        """
         while True:
-            odpoved = input("\nOpravdu chceš ukončit program ? ano / ne: ").lower()
+            odpoved = input(f"\n{zprava} ano / ne: ").lower()
             if odpoved == "ano":
-                exit()
+                return True
             elif odpoved == "ne":
-                break
+                return False
             else:
-                print("Neplatny přikaz, musite zadat ano / ne")
+                print("Neplatný příkaz, musíte zadat ano / ne")
 
     def vypis(self):
         print()
