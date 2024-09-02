@@ -200,4 +200,3 @@ class Urivatelske_prostredi():
         print()
         print("Pokračujte libovolnou klavesou")
         input()
-

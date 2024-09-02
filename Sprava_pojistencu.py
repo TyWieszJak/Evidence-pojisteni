@@ -48,4 +48,3 @@ class Evidence_pojistenych():
             if osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower():
                 return osoba
         return None
-
