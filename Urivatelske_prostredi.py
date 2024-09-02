@@ -23,7 +23,8 @@ class Urivatelske_prostredi():
             print("2 - Vypsat vsechny pojistené")
             print("3 - Vyhledat pojisteného")
             print("4 - Odebrani pojisteného")
-            print("5 - Konec")
+            print("5 - Editace pojisteného")
+            print("6 - Konec")
             try:
                 volba = int(input())
                 match volba:
@@ -39,20 +40,10 @@ class Urivatelske_prostredi():
                     case 3:
                         self.ziskani_vstupu_pro_vyhledavani()
                     case 4:
-                        jmeno,prijmeni = self.ziskani_vstupu_pro_vyhledavani()
-                        if jmeno and  prijmeni != None :
-                            while True:
-                                odpoved = input("\nOpravdu chceš odebrat pojištěného? ano / ne: ").lower()
-                                if odpoved == "ano":
-                                    self.evidence.odebrani_pojisteneho(jmeno,prijmeni)
-                                    print(f"Osoba {jmeno} {prijmeni} byla úspěšně odstraněna.")
-                                    self.vypis()
-                                    break
-                                elif odpoved == "ne":
-                                    break
-                                else:
-                                    print("Neplatny přikaz, musite zadat ano / ne")
+                        self.odstraneni_pojisteneho()
                     case 5:
+                        self.editace_pojisteneho()
+                    case 6:
                         self.ukonceni_programu()
                     case _:
                         print("Neplatná volba.")
@@ -125,6 +116,71 @@ class Urivatelske_prostredi():
             print(f"Osoba {hledane_jmeno} {hledane_prijmeni} nebyla nalezena.")
         self.vypis()
         return None,None
+
+    def editace_pojisteneho(self):
+        jmeno,prijmeni = self.ziskani_vstupu_pro_vyhledavani()
+        nalezena_osoba = self.evidence.vyhledani_pojisteneho(jmeno,prijmeni)
+
+        if nalezena_osoba:
+            """
+             Umožňuje editaci údajů pojištěného. Uživatel zadá jméno a příjmení pro vyhledání osoby,
+             a pokud je nalezena, může upravit její údaje, jako je jméno, příjmení, telefonní číslo a věk.
+            """
+            print(f"Nalezena osoba: {nalezena_osoba}")
+
+            while True:
+                print("Co chcete upravit?")
+                print("1 - Jméno")
+                print("2 - Příjmení")
+                print("3 - Telefonní číslo")
+                print("4 - Věk")
+                print("5 - Ukončit úpravy")
+
+                volba = int(input())
+                try:
+                    match volba:
+                        case 1:
+                            nove_jmeno = self.kontrola_delky_a_typu_dat("nové jméno", pouze_text=True)
+                            nalezena_osoba.jmeno = nove_jmeno
+                            print(f"Jméno bylo změněno na {nove_jmeno}.")
+                        case 2:
+                            nove_prijmeni = self.kontrola_delky_a_typu_dat("nové příjmení", pouze_text=True)
+                            nalezena_osoba.prijmeni = nove_prijmeni
+                            print(f"Příjmení bylo změněno na {nove_prijmeni}.")
+                        case 3:
+                            nove_tel_cislo = self.kontrola_delky_a_typu_dat("nové telefonní číslo", pouze_cisla=True)
+                            nalezena_osoba.telefonni_cislo = nove_tel_cislo
+                            print(f"Telefonní číslo bylo změněno na {nove_tel_cislo}.")
+                        case 4:
+                            novy_vek = self.kontrola_delky_a_typu_dat("nový věk", pouze_cisla=True)
+                            nalezena_osoba.vek = novy_vek
+                            print(f"Věk byl změněn na {novy_vek}.")
+                        case 5:
+                            print("Upravy byly ukončeny.\n")
+                            break
+                        case _:
+                            print("Neplatná volba.")
+                except ValueError:
+                    print("Neplatná volba.")
+                except KeyboardInterrupt:
+                    print("\nProgram byl přerušen. Ukončuji.")
+                    break
+
+
+    def odstraneni_pojisteneho(self):
+        jmeno, prijmeni = self.ziskani_vstupu_pro_vyhledavani()
+        if jmeno and prijmeni != None:
+            while True:
+                odpoved = input(f"\nOpravdu chceš odebrat pojištěného {jmeno} {prijmeni} ? ano / ne: ").lower()
+                if odpoved == "ano":
+                    self.evidence.odebrani_pojisteneho(jmeno, prijmeni)
+                    print(f"Osoba {jmeno} {prijmeni} byla úspěšně odstraněna.")
+                    self.vypis()
+                    break
+                elif odpoved == "ne":
+                    break
+                else:
+                    print("Neplatny přikaz, musite zadat ano / ne")
 
     def ukonceni_programu(self):
         while True:

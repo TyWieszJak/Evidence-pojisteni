@@ -38,11 +38,12 @@ class Evidence_pojistenych():
         """
         Kontrola jmena  a příjmení. A vyhledani v seznamu.
         """
-        for osoba in self.seznam: # Program zkontroluje, zda má aktuální osoba vyplněné jméno a příjmení. Pokud ano, pokračuje dál.
-            if osoba.jmeno and osoba.prijmeni:
-                if osoba.jmeno.lower() == hledane_jmeno.lower() and osoba.prijmeni.lower() == hledane_prijmeni.lower():
-                    return osoba
-        return None
+        if hledane_jmeno is not None and hledane_prijmeni is not None:
+            for osoba in self.seznam: # Program zkontroluje, zda má aktuální osoba vyplněné jméno a příjmení. Pokud ano, pokračuje dál.
+                if osoba.jmeno and osoba.prijmeni:
+                    if osoba.jmeno.lower() == hledane_jmeno.lower() and osoba.prijmeni.lower() == hledane_prijmeni.lower():
+                        return osoba
+            return None
 
 
 
