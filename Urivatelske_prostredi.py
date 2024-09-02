@@ -118,15 +118,18 @@ class Urivatelske_prostredi():
         return None,None
 
     def editace_pojisteneho(self):
+
+        """
+                     Umožňuje editaci údajů pojištěného. Uživatel zadá jméno a příjmení pro vyhledání osoby,
+                     a pokud je nalezena, může upravit její údaje, jako je jméno, příjmení, telefonní číslo a věk.
+        """
+
         jmeno,prijmeni = self.ziskani_vstupu_pro_vyhledavani()
         nalezena_osoba = self.evidence.vyhledani_pojisteneho(jmeno,prijmeni)
 
         if nalezena_osoba:
-            """
-             Umožňuje editaci údajů pojištěného. Uživatel zadá jméno a příjmení pro vyhledání osoby,
-             a pokud je nalezena, může upravit její údaje, jako je jméno, příjmení, telefonní číslo a věk.
-            """
-            print(f"Nalezena osoba: {nalezena_osoba}")
+
+       #  print(f"Nalezena osoba: {nalezena_osoba}")
 
             while True:
                 print("Co chcete upravit?")

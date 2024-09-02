@@ -22,8 +22,8 @@ class Evidence_pojistenych():
         """
         Odebírá pojištěného podle zadaných parametrů.
         """
+        osoba = self.najdi_pojistence()
         for osoba in self.seznam:
-            if osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower():
                 self.seznam.remove(osoba)
                 return osoba
 
@@ -39,11 +39,13 @@ class Evidence_pojistenych():
         Kontrola jmena  a příjmení. A vyhledani v seznamu.
         """
         if hledane_jmeno is not None and hledane_prijmeni is not None:
-            for osoba in self.seznam: # Program zkontroluje, zda má aktuální osoba vyplněné jméno a příjmení. Pokud ano, pokračuje dál.
-                if osoba.jmeno and osoba.prijmeni:
-                    if osoba.jmeno.lower() == hledane_jmeno.lower() and osoba.prijmeni.lower() == hledane_prijmeni.lower():
-                        return osoba
-            return None
+            return self.najdi_pojistence (hledane_jmeno, hledane_prijmeni)
 
+        return None
 
+    def najdi_pojistence(self,jmeno,prijmeni):
+        for osoba in self.seznam:
+            if osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower():
+                return osoba
+        return None
 
