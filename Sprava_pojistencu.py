@@ -36,7 +36,7 @@ class Evidence_pojistenych():
 
     def vyhledani_pojisteneho(self,hledane_jmeno,hledane_prijmeni):
         """
-        Kontrola jmena  a příjmení. A vyhledani v seznamu.
+         A vyhledani v seznamu.
         """
         if hledane_jmeno is not None and hledane_prijmeni is not None:
             return self.najdi_pojistence (hledane_jmeno, hledane_prijmeni)
@@ -44,6 +44,9 @@ class Evidence_pojistenych():
         return None
 
     def najdi_pojistence(self,jmeno,prijmeni):
+        """
+        Kontrola jmena  a příjmení.
+        """
         for osoba in self.seznam:
             if osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower():
                 return osoba

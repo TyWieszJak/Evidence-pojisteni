@@ -119,8 +119,8 @@ class Urivatelske_prostredi():
     def editace_pojisteneho(self):
 
         """
-                     Umožňuje editaci údajů pojištěného. Uživatel zadá jméno a příjmení pro vyhledání osoby,
-                     a pokud je nalezena, může upravit její údaje, jako je jméno, příjmení, telefonní číslo a věk.
+        Umožňuje editaci údajů pojištěného. Uživatel zadá jméno a příjmení pro vyhledání osoby,
+        a pokud je nalezena, může upravit její údaje, jako je jméno, příjmení, telefonní číslo a věk.
         """
 
         jmeno,prijmeni = self.ziskani_vstupu_pro_vyhledavani()
