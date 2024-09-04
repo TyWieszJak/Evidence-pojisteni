@@ -1,4 +1,6 @@
-import re # import re pro regularni vyrazy
+
+
+from Validace import Validator
 
 print("-" * 30)
 print(f"{'Evidence pojistenych':>25}")
@@ -61,10 +63,10 @@ class Urivatelske_prostredi():
         Kontroluje zda jméno, příjmení nebo telefonní číslo nejsou duplicitní.
         """
         while True:
-            jmeno = self.kontrola_delky_a_typu_dat("jméno", pouze_text= True)
-            prijmeni = self.kontrola_delky_a_typu_dat("příjmení", pouze_text= True)
-            telefonni_cislo = self.kontrola_delky_a_typu_dat("telefonní číslo", pouze_cisla= True)
-            vek = self.kontrola_delky_a_typu_dat("věk", pouze_cisla= True)
+            jmeno = Validator.kontrola_delky_a_typu_dat("jméno", pouze_text= True)
+            prijmeni = Validator.kontrola_delky_a_typu_dat("příjmení", pouze_text= True)
+            telefonni_cislo = Validator.kontrola_delky_a_typu_dat("telefonní číslo",pouze_cisla=True)
+            vek = Validator.kontrola_delky_a_typu_dat("věk", pouze_cisla= True)
 
             for osoba in self.evidence.seznam:
                 if (osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower()) or \
@@ -74,30 +76,6 @@ class Urivatelske_prostredi():
             self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
             return
 
-    def kontrola_delky_a_typu_dat(self, vstupni_slovo, pouze_text = False, pouze_cisla = False):
-        """
-        Kontroluje délku vstupu. Kontroluje, zda je vstup text nebo cislo nebo mezery.
-        Povoluje pouze písmena a mezery nebo cisla a mezery.
-        """
-        while True:
-            vstup = input(f"Zadejte {vstupni_slovo}:\n").strip()   # Kontroluje délku vstupu
-            if pouze_text:
-                # Kontrola, zda je vstup text
-                if re.fullmatch(r"[A-Za-z\s]+", vstup):  # Povolit pouze písmena a mezery
-                    return vstup
-                else:
-                    print(f"{vstupni_slovo} musí obsahovat pouze písmena.")
-            elif pouze_cisla:
-                # Kontrola, zda je vstup číslice nebo mezery
-                if re.fullmatch(r"[0-9\s]+", vstup):  # Povolit pouze číslice a mezery
-                    return vstup
-                else:
-                    print(f"{vstupni_slovo} musí obsahovat pouze číslice nebo mezery.")
-            else:
-                if len(vstup) > 0:
-                    return vstup
-                else:
-                    print(f"{vstupni_slovo} je příliš krátké. Zadejte prosím znovu.")
 
     def ziskani_vstupu_pro_vyhledavani(self):
         """
@@ -139,19 +117,19 @@ class Urivatelske_prostredi():
                 try:
                     match volba:
                         case 1:
-                            nove_jmeno = self.kontrola_delky_a_typu_dat("nové jméno", pouze_text=True)
+                            nove_jmeno = Validator.kontrola_delky_a_typu_dat("nové jméno", pouze_text=True)
                             nalezena_osoba.jmeno = nove_jmeno
                             print(f"Jméno bylo změněno na {nove_jmeno}.")
                         case 2:
-                            nove_prijmeni = self.kontrola_delky_a_typu_dat("nové příjmení", pouze_text=True)
+                            nove_prijmeni = Validator.kontrola_delky_a_typu_dat("nové příjmení", pouze_text=True)
                             nalezena_osoba.prijmeni = nove_prijmeni
                             print(f"Příjmení bylo změněno na {nove_prijmeni}.")
                         case 3:
-                            nove_tel_cislo = self.kontrola_delky_a_typu_dat("nové telefonní číslo", pouze_cisla=True)
+                            nove_tel_cislo = Validator.kontrola_delky_a_typu_dat("nové telefonní číslo", pouze_cisla=True)
                             nalezena_osoba.telefonni_cislo = nove_tel_cislo
                             print(f"Telefonní číslo bylo změněno na {nove_tel_cislo}.")
                         case 4:
-                            novy_vek = self.kontrola_delky_a_typu_dat("nový věk", pouze_cisla=True)
+                            novy_vek = Validator.kontrola_delky_a_typu_dat("nový věk", pouze_cisla=True)
                             nalezena_osoba.vek = novy_vek
                             print(f"Věk byl změněn na {novy_vek}.")
                         case 5:
@@ -185,7 +163,7 @@ class Urivatelske_prostredi():
 
     def potvrdit_akci(self, zprava):
         """
-        Zobrazí zprávu a požádá uživatele o potvrzení akce.
+        Zobrazí zprávu kterou předa jina metoda a požádá uživatele o potvrzení akce.
         """
         while True:
             odpoved = input(f"\n{zprava} ano / ne: ").lower()

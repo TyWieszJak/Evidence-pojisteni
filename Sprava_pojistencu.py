@@ -5,7 +5,7 @@ class Evidence_pojistenych():
     """
     Třída obsahuje metody používané pro práci s evidencí (přidání, odebirani, vyhledávání, vypsání všech).
     """
-    def __init__(self,seznam):
+    def __init__(self,seznam = []):
 
             self.seznam = seznam
 
