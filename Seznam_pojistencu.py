@@ -44,5 +44,5 @@ class Dane_pojistenca:
             self._vek = novy_vek
 
         def __str__(self):
-            return f"{self.jmeno:<10}  {self.prijmeni:<10} {self.telefonni_cislo:<10}  {self.vek:>3}"
+            return f"{self.jmeno:<10}  {self.prijmeni:<10} {self.telefonni_cislo:<20}  {self.vek:>3}"
 

@@ -7,7 +7,7 @@ class Evidence_pojistenych():
     """
     def __init__(self,seznam = []):
 
-            self.seznam = seznam
+            self.seznam = seznam # Dependency Injection (vkládání závislostí)
 
     def pridani_pojisteneho(self, jmeno, prijmeni, telefonni_cislo, vek):
         """

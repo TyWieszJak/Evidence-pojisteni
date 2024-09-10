@@ -1,25 +1,25 @@
-
-
 from Validace import Validator
 
 print("-" * 30)
 print(f"{'Evidence pojistenych':>25}")
 print("-"* 30)
 
-class Urivatelske_prostredi():
+class Urivatelske_rozhrani():
     """
     Tato třída poskytuje uživatelské rozhraní pro správu pojištěnců. Umožňuje zobrazení menu s různými možnostmi.
     Třída zajišťuje, že uživatel zadá platná data.
     """
 
     def __init__(self, evidence):
-        self.evidence = evidence
+        self.evidence = evidence  # Dependency Injection (vkládání závislostí)
 
     def nabidka_voleb(self):
         """
         Tato metoda zobrazuje uživateli menu a na základě jeho volby provádí příslušnou akci.
         """
+
         while True :
+
             print("Vyberte si akci:")
             print("1 - Pridat nového pojisteného")
             print("2 - Vypsat vsechny pojistené")
@@ -27,14 +27,17 @@ class Urivatelske_prostredi():
             print("4 - Odebrani pojisteného")
             print("5 - Editace pojisteného")
             print("6 - Konec")
+
             try:
                 volba = int(input())
+
                 match volba:
                     case 1:
                         self.ziskat_platny_vstup()
                         print("Data byla uložena.")
                         self.vypis()
                     case 2:
+                        print("=" * 60)
                         pojistenci = self.evidence.vypsat_vsechny_pojistene()
                         for pojistenec in pojistenci:
                             print(pojistenec)
@@ -106,6 +109,7 @@ class Urivatelske_prostredi():
 
         if nalezena_osoba:
             while True:
+
                 print("Co chcete upravit?")
                 print("1 - Jméno")
                 print("2 - Příjmení")
@@ -113,8 +117,9 @@ class Urivatelske_prostredi():
                 print("4 - Věk")
                 print("5 - Ukončit úpravy")
 
-                volba = int(input())
                 try:
+                    volba = int(input())
+
                     match volba:
                         case 1:
                             nove_jmeno = Validator.kontrola_delky_a_typu_dat("nové jméno", pouze_text=True)
