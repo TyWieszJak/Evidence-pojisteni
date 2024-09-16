@@ -7,27 +7,28 @@ class Validator():
     """
     @staticmethod
     def kontrola_delky_a_typu_dat(vstupni_slovo, pouze_text = False, pouze_cisla = False):
-        """
-        Kontroluje délku vstupu. Kontroluje, zda je vstup text nebo cislo nebo mezery.
-        Povoluje pouze písmena a mezery nebo cisla a mezery.
-        """
-        while True:
-            vstup = input(f"Zadejte {vstupni_slovo}:\n").strip()  # Kontroluje délku vstupu
-            if len(vstup) > 0:
+            """
+            Kontroluje délku vstupu a zda odpovídá požadovanému typu.
+            vstup: str - vstup uživatele
+            pouze_text: bool - True, pokud má být vstup text
+            pouze_cisla: bool - True, pokud má být vstup číslo
+            """
+            if len(vstupni_slovo) > 0:
                 if pouze_text:
-                    # Kontrola, zda je vstup text
-                    if re.fullmatch(r"[A-Za-z\s]+", vstup):  # Povolit pouze písmena a mezery
-                        return vstup
+                        # Kontrola, zda je vstup text
+                    if re.fullmatch(r"[A-Za-z\s]+", vstupni_slovo):  # Povolit pouze písmena a mezery
+                        return True
                     else:
-                        print(f"{vstupni_slovo} musí obsahovat pouze písmena.")
+                        print(f"Vstup musí obsahovat pouze písmena.")
                 elif pouze_cisla:
-                    # Kontrola, zda je vstup číslice nebo mezery
-                    if re.fullmatch(r'^[0-9\s\-()+]+$', vstup):  # Povolit pouze číslice a mezery nebo znaky
-                        return vstup
+                        # Kontrola, zda je vstup číslice nebo mezery
+                    if re.fullmatch(r'^[0-9\s]+$', vstupni_slovo):  # Povolit pouze číslice a mezery nebo znaky
+                        return True
                     else:
-                        print(f"{vstupni_slovo} musí obsahovat pouze číslice, znaky (-, +, () ) nebo mezery.")
+                        print(f"Vstup musí obsahovat pouze číslice, znaky (-, +, () )")
                 else:
                     # Pokud nejsou specifikovány žádné typy, považujeme vstup za platný
-                    return vstup
+                    return True
             else:
-                print(f"{vstupni_slovo} je příliš krátké. Zadejte prosím znovu.")
+                print(f"Vstup je příliš krátký. Zadejte prosím znovu.")
+            return False

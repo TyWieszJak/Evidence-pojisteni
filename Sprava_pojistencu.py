@@ -7,16 +7,15 @@ class Evidence_pojistenych():
     """
     def __init__(self,seznam = []):
 
-            self.seznam = seznam # Dependency Injection (vkládání závislostí)
+            self.seznam = seznam
 
     def pridani_pojisteneho(self, jmeno, prijmeni, telefonni_cislo, vek):
         """
-        Metoda získává data z uživatelského rozhraní a kontroluje.
         Přidává záznam do seznamu.
         """
 
         novy_pojistenec = Dane_pojistenca(jmeno, prijmeni, telefonni_cislo, vek)
-        self.seznam.append(novy_pojistenec)  # Uklada vstup do seznamu.
+        self.seznam.append(novy_pojistenec)
 
     def odebrani_pojisteneho(self,jmeno,prijmeni):
         """
@@ -35,13 +34,12 @@ class Evidence_pojistenych():
 
 
     def vyhledani_pojisteneho(self,hledane_jmeno,hledane_prijmeni):
-        """
-         A vyhledani v seznamu.
-        """
-        if hledane_jmeno is not None and hledane_prijmeni is not None:
+            """
+             A vyhledani v seznamu.
+            """
             return self.najdi_pojistence (hledane_jmeno, hledane_prijmeni)
 
-        return None
+       # return None
 
     def najdi_pojistence(self,jmeno,prijmeni):
         """

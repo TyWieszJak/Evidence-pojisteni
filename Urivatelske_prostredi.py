@@ -7,17 +7,15 @@ print("-"* 30)
 class Urivatelske_rozhrani():
     """
     Tato třída poskytuje uživatelské rozhraní pro správu pojištěnců. Umožňuje zobrazení menu s různými možnostmi.
-    Třída zajišťuje, že uživatel zadá platná data.
     """
 
     def __init__(self, evidence):
-        self.evidence = evidence  # Dependency Injection (vkládání závislostí)
+        self.evidence = evidence
 
     def nabidka_voleb(self):
         """
-        Tato metoda zobrazuje uživateli menu a na základě jeho volby provádí příslušnou akci.
+        Zobrazuje uživateli menu a na základě jeho volby provádí příslušnou akci.
         """
-
         while True :
 
             print("Vyberte si akci:")
@@ -33,14 +31,10 @@ class Urivatelske_rozhrani():
 
                 match volba:
                     case 1:
-                        self.ziskat_platny_vstup()
-                        print("Data byla uložena.")
+                        self.pridat_pojistence()
                         self.vypis()
                     case 2:
-                        print("=" * 60)
-                        pojistenci = self.evidence.vypsat_vsechny_pojistene()
-                        for pojistenec in pojistenci:
-                            print(pojistenec)
+                        self.vypsat_vsechny()
                         self.vypis()
                     case 3:
                         self.ziskani_vstupu_pro_vyhledavani()
@@ -59,25 +53,37 @@ class Urivatelske_rozhrani():
                 print("\nProgram byl přerušen. Ukončuji.")
                 break
 
-    def ziskat_platny_vstup(self):
+
+    def ziskat_platny_vstup(self, typ, vstupni_slovo):
         """
-        Získává jednotlivé vstupy od uživatele.
-        Předává vstupy metodě pridani_pojisteneho.
-        Kontroluje zda jméno, příjmení nebo telefonní číslo nejsou duplicitní.
+        Získává platný vstup od uživatele podle zadaného typu dat.
+        typ: str ('text', 'cislo') - určuje typ vstupu, který je validován
+        vstupni_slovo: str - název pole pro účely výpisu uživateli
         """
         while True:
-            jmeno = Validator.kontrola_delky_a_typu_dat("jméno", pouze_text= True)
-            prijmeni = Validator.kontrola_delky_a_typu_dat("příjmení", pouze_text= True)
-            telefonni_cislo = Validator.kontrola_delky_a_typu_dat("telefonní číslo",pouze_cisla=True)
-            vek = Validator.kontrola_delky_a_typu_dat("věk", pouze_cisla= True)
+            hodnota = input(f"Zadejte {vstupni_slovo}: ").strip()
+            if Validator.kontrola_delky_a_typu_dat(hodnota, pouze_text=(typ == 'text'), pouze_cisla=(typ == 'cislo')):
+                return hodnota
 
-            for osoba in self.evidence.seznam:
-                if (osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower()) or \
-                        osoba.telefonni_cislo == telefonni_cislo:
-                    print(f"Osoba s tímto jménem a příjmením nebo telefonním číslem již existuje.")
-                    return
-            self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
-            return
+
+    def pridat_pojistence(self):
+        """
+        Přidává nového pojištěnce po získání platných vstupů.
+        """
+        jmeno = self.ziskat_platny_vstup('text', 'jméno')
+        prijmeni = self.ziskat_platny_vstup('text', 'příjmení')
+        telefonni_cislo = self.ziskat_platny_vstup('cislo', 'telefonní číslo')
+        vek = self.ziskat_platny_vstup('cislo', 'věk')
+
+        for osoba in self.evidence.seznam:
+            if (osoba.jmeno.lower() == jmeno.lower() and osoba.prijmeni.lower() == prijmeni.lower()) or \
+                    osoba.telefonni_cislo == telefonni_cislo:
+                print(f"Osoba s tímto jménem a příjmením nebo telefonním číslem již existuje.")
+                return
+
+        # Voláme metodu třídy Evidence_pojistenych
+        self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
+        print("Data byla uložena.")
 
 
     def ziskani_vstupu_pro_vyhledavani(self):
@@ -85,13 +91,13 @@ class Urivatelske_rozhrani():
         Získává vstup pro metodu vyhledání pojištěného a odebrani pojisteneho.
         """
 
-        hledane_jmeno = input("Zadejte jméno osoby:\n").strip()
-        hledane_prijmeni = input("Zadejte příjmení osoby:\n").strip()
+        hledane_jmeno = self.ziskat_platny_vstup('text', 'jméno')
+        hledane_prijmeni = self.ziskat_platny_vstup('text', 'příjmení')
         nalezena_osoba = self.evidence.vyhledani_pojisteneho(hledane_jmeno, hledane_prijmeni)
         if nalezena_osoba:
             print(f"Nalezena osoba: {nalezena_osoba}")
             self.vypis()
-            return hledane_jmeno,hledane_prijmeni
+            #return hledane_jmeno,hledane_prijmeni
         else:
             print(f"Osoba {hledane_jmeno} {hledane_prijmeni} nebyla nalezena.")
         self.vypis()
@@ -178,9 +184,16 @@ class Urivatelske_rozhrani():
                 return False
             else:
                 print("Neplatný příkaz, musíte zadat ano / ne")
+    def vypsat_vsechny(self):
+        print("=" * 60)
+        pojistenci = self.evidence.vypsat_vsechny_pojistene()
+        for pojistenec in pojistenci:
+            print(pojistenec)
+
 
     def vypis(self):
         print()
         print()
         print("Pokračujte libovolnou klavesou")
         input()
+
