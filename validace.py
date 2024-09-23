@@ -29,7 +29,7 @@ class Validace:
         - Pokud `pouze_text=True`, vstupní slovo musí obsahovat pouze písmena a mezery.
         - Pokud `pouze_cisla=True`, vstupní slovo musí obsahovat pouze číslice.
         - Pokud ani jeden parametr není True, vstup je považován za platný.
-        0
+
         """
 
         if len(vstupni_slovo) > 0:

@@ -1,5 +1,5 @@
 
-from dane_pojistenca import Dane_pojistenca
+from pojistenec import Pojistenec
 
 class Evidence_pojistenych:
     """
@@ -16,7 +16,7 @@ class Evidence_pojistenych:
             seznam = []
         self.seznam = seznam
 
-    def pridani_pojisteneho(self, jmeno, prijmeni, telefonni_cislo, vek):
+    def pridani_pojisteneho(self, novy_pojistenec):
         """
         Přidává nového pojištěnce do evidence.
 
@@ -27,8 +27,6 @@ class Evidence_pojistenych:
         :param vek: Věk pojištěnce (int).
         :return: None
         """
-
-        novy_pojistenec = Dane_pojistenca(jmeno, prijmeni, telefonni_cislo, vek)
         self.seznam.append(novy_pojistenec)
 
     def odebrani_pojisteneho(self,jmeno,prijmeni):

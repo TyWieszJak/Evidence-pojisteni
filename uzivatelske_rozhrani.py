@@ -1,10 +1,11 @@
 from validace import Validace
+from pojistenec import Pojistenec
 
 print("-" * 30)
 print(f"{'Evidence pojistenych':>25}")
 print("-"* 30)
 
-class Urivatelske_rozhrani:
+class Uzivatelske_rozhrani:
     """
     Třída poskytuje uživatelské rozhraní pro správu pojištěnců. Umožňuje interakci
     s uživatelem prostřednictvím textového menu, kde může uživatel přidávat, vyhledávat,
@@ -113,9 +114,10 @@ class Urivatelske_rozhrani:
                     osoba.telefonni_cislo == telefonni_cislo:
                 print(f"Osoba s tímto jménem a příjmením nebo telefonním číslem již existuje.")
                 return
+        novy_pojistenec = (jmeno, prijmeni, telefonni_cislo, vek)
 
         # Voláme metodu třídy Evidence_pojistenych
-        self.evidence.pridani_pojisteneho(jmeno, prijmeni, telefonni_cislo, vek)
+        self.evidence.pridani_pojisteneho(novy_pojistenec)
         print("Data byla uložena.")
 
 

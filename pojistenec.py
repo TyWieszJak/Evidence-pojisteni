@@ -1,5 +1,5 @@
 
-class Dane_pojistenca:
+class Pojistenec:
         """
     Třída slouží k ukládání informací o pojištěnci, včetně jména, příjmení,
     telefonního čísla a věku. Obsahuje metody pro získání a nastavení těchto atributů
