@@ -1,19 +1,37 @@
 import re # import re pro regularni vyrazy
 
 
-class Validator():
+class Validator:
     """
-    Utility třida, kontroluje delku a typ dat.
+        Utility třída pro validaci vstupních dat.
+
+        Tato třída nabízí metody pro kontrolu délky a typu vstupních dat,
+        jako jsou textové řetězce a číselné hodnoty. Používá regulární výrazy
+        k ověření, zda vstup odpovídá požadovanému formátu.
     """
     @staticmethod
     def kontrola_delky_a_typu_dat(vstupni_slovo, pouze_text = False, pouze_cisla = False):
+        """
+               Kontroluje, zda vstupní data mají správnou délku a odpovídají požadovanému typu.
+
+               Argumenty:
+               ---------
+               vstupni_slovo (str): Vstupní řetězec, který se má validovat.
+               pouze_text (bool): Pokud je True, ověřuje, že vstup obsahuje pouze písmena a mezery.
+               pouze_cisla (bool): Pokud je True, ověřuje, že vstup obsahuje pouze číslice.
+
+               Návratová hodnota:
+               -----------------
+               bool: Vrací True, pokud vstup splňuje požadavky na typ a délku. Vrací False v případě chyby.
+
+               Kontrolní podmínky:
+               ------------------
+               - Pokud `pouze_text=True`, vstupní slovo musí obsahovat pouze písmena a mezery.
+               - Pokud `pouze_cisla=True`, vstupní slovo musí obsahovat pouze číslice.
+               - Pokud ani jeden parametr není True,  vstup je považován za platný.
             """
-            Kontroluje délku vstupu a zda odpovídá požadovanému typu.
-            vstup: str - vstup uživatele
-            pouze_text: bool - True, pokud má být vstup text
-            pouze_cisla: bool - True, pokud má být vstup číslo
-            """
-            if len(vstupni_slovo) > 0:
+
+        if len(vstupni_slovo) > 0:
                 if pouze_text:
                         # Kontrola, zda je vstup text
                     if re.fullmatch(r"[A-Za-z\s]+", vstupni_slovo):  # Povolit pouze písmena a mezery
@@ -29,6 +47,6 @@ class Validator():
                 else:
                     # Pokud nejsou specifikovány žádné typy, považujeme vstup za platný
                     return True
-            else:
-                print(f"Vstup je příliš krátký. Zadejte prosím znovu.")
-            return False
+        else:
+            print(f"Vstup je příliš krátký. Zadejte prosím znovu.")
+        return False

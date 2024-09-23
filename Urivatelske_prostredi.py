@@ -4,18 +4,40 @@ print("-" * 30)
 print(f"{'Evidence pojistenych':>25}")
 print("-"* 30)
 
-class Urivatelske_rozhrani():
+class Urivatelske_rozhrani:
     """
-    Tato třída poskytuje uživatelské rozhraní pro správu pojištěnců. Umožňuje zobrazení menu s různými možnostmi.
+    Třída poskytuje uživatelské rozhraní pro správu pojištěnců. Umožňuje interakci
+    s uživatelem prostřednictvím textového menu, kde může uživatel přidávat, vyhledávat,
+    upravovat a odebírat pojištěnce, a také ukončit program.
+
+    :param evidence: Instance třídy EvidencePojistenych, která obsahuje seznam pojištěnců a metody
+                     pro manipulaci s nimi.
     """
 
     def __init__(self, evidence):
+        """
+        Inicializuje třídu UzivatelskeRozhrani s instancí evidence pojištěnců.
+
+        :param evidence: Instance třídy EvidencePojistenych pro správu pojištěnců.
+
+        """
         self.evidence = evidence
+
 
     def nabidka_voleb(self):
         """
-        Zobrazuje uživateli menu a na základě jeho volby provádí příslušnou akci.
+        Zobrazuje hlavní menu programu, kde uživatel může vybrat různé akce:
+        - Přidání nového pojištěnce
+        - Vypsání všech pojištěnců
+        - Vyhledání pojištěnce
+        - Odebrání pojištěnce
+        - Editace pojištěnce
+        - Ukončení programu
+
+        Metoda čeká na uživatelskou volbu a poté zavolá příslušnou akci.
+        :return: None
         """
+
         while True :
 
             print("Vyberte si akci:")
@@ -56,10 +78,17 @@ class Urivatelske_rozhrani():
 
     def ziskat_platny_vstup(self, typ, vstupni_slovo):
         """
-        Získává platný vstup od uživatele podle zadaného typu dat.
-        typ: str ('text', 'cislo') - určuje typ vstupu, který je validován
-        vstupni_slovo: str - název pole pro účely výpisu uživateli
+        Získává validovaný vstup od uživatele na základě zadaného typu (text nebo číslo).
+        Vstup je kontrolován pomocí validátoru.
+
+        :param typ: Typ vstupu, který uživatel zadává. Možnosti jsou 'text' (pro textové vstupy)
+                    a 'cislo' (pro číselné vstupy).
+        :param vstupni_slovo: Popis vstupu, který se zobrazí uživateli jako nápověda (např. 'jméno',
+                              'telefonní číslo').
+        :return: Validovaný uživatelský vstup, který prošel kontrolou délky a typu dat.
+        :rtype: str
         """
+
         while True:
             hodnota = input(f"Zadejte {vstupni_slovo}: ").strip()
             if Validator.kontrola_delky_a_typu_dat(hodnota, pouze_text=(typ == 'text'), pouze_cisla=(typ == 'cislo')):
@@ -69,6 +98,10 @@ class Urivatelske_rozhrani():
     def pridat_pojistence(self):
         """
         Přidává nového pojištěnce po získání platných vstupů.
+        Pokud pojištěnec se stejnými údaji již existuje, informuje uživatele
+        a akce je zrušena.
+
+        :return: None
         """
         jmeno = self.ziskat_platny_vstup('text', 'jméno')
         prijmeni = self.ziskat_platny_vstup('text', 'příjmení')
@@ -88,7 +121,11 @@ class Urivatelske_rozhrani():
 
     def ziskani_vstupu_pro_vyhledavani(self):
         """
-        Získává vstup pro metodu vyhledání pojištěného a odebrani pojisteneho.
+        Získává od uživatele vstup pro vyhledání pojištěnce na základě jeho jména a příjmení.
+        Pokud je pojištěnec nalezen, zobrazí informace o něm.
+
+        :return: tuple(str, str): Jméno a příjmení pojištěnce, pokud je osoba nalezena.
+                 tuple(None, None): Pokud osoba nebyla nalezena.
         """
 
         hledane_jmeno = self.ziskat_platny_vstup('text', 'jméno')
@@ -104,10 +141,11 @@ class Urivatelske_rozhrani():
         return None,None
 
     def editace_pojisteneho(self):
-
         """
         Umožňuje editaci údajů pojištěného. Uživatel zadá jméno a příjmení pro vyhledání osoby,
         a pokud je nalezena, může upravit její údaje, jako je jméno, příjmení, telefonní číslo a věk.
+
+        :return: None
         """
 
         jmeno,prijmeni = self.ziskani_vstupu_pro_vyhledavani()
@@ -155,7 +193,12 @@ class Urivatelske_rozhrani():
                     break
 
     def odstraneni_pojisteneho(self):
+        """
+        Umožňuje odebrání pojištěného na základě jeho jména a příjmení.
+        Pokud je pojištěnec nalezen, je smazán z evidence.
 
+        :return: None
+        """
         jmeno, prijmeni = self.ziskani_vstupu_pro_vyhledavani()
 
         if jmeno and prijmeni:
@@ -174,7 +217,13 @@ class Urivatelske_rozhrani():
 
     def potvrdit_akci(self, zprava):
         """
-        Zobrazí zprávu kterou předa jina metoda a požádá uživatele o potvrzení akce.
+        Zobrazuje uživateli zprávu a žádá o potvrzení akce ('ano' nebo 'ne').
+
+        :param self: Instance třídy, která metodu volá.
+        :param zprava: str: Zpráva, která se zobrazí uživateli jako výzva k potvrzení akce.
+
+        :return: bool: Vrací True, pokud uživatel potvrdil akci, jinak False.
+
         """
         while True:
             odpoved = input(f"\n{zprava} ano / ne: ").lower()
@@ -184,7 +233,13 @@ class Urivatelske_rozhrani():
                 return False
             else:
                 print("Neplatný příkaz, musíte zadat ano / ne")
+
     def vypsat_vsechny(self):
+        """
+        Vypíše všechny pojištěnce, kteří jsou aktuálně uloženi v evidenci.
+
+        :return: None
+        """
         print("=" * 60)
         pojistenci = self.evidence.vypsat_vsechny_pojistene()
         for pojistenec in pojistenci:
@@ -196,4 +251,3 @@ class Urivatelske_rozhrani():
         print()
         print("Pokračujte libovolnou klavesou")
         input()
-

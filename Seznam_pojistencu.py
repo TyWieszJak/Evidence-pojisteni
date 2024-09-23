@@ -1,11 +1,28 @@
 
 class Dane_pojistenca:
         """
-        Třída slouží k ukládání informací o pojištěnci, jméno, příjmení,
-        telefonní číslo a věk. Obsahuje metody pro získání těchto atributů a umožňuje
-        vrátit informace o pojištěnci.
-        """
+    Třída slouží k ukládání informací o pojištěnci, včetně jména, příjmení,
+    telefonního čísla a věku. Obsahuje metody pro získání a nastavení těchto atributů
+    a také pro vracení informací o pojištěnci ve formátu řetězce.
+
+    Atributy:
+    ----------
+    _jmeno : str: Jméno pojištěnce.
+    _prijmeni : str: Příjmení pojištěnce.
+    _telefonni_cislo : str: Telefonní číslo pojištěnce.
+    _vek : int: Věk pojištěnce.
+    """
         def __init__(self,jmeno,prijmeni,telefonni_cislo,vek):
+            """
+            Inicializuje instanci třídy Dane_pojistenca s údaji o pojištěnci.
+
+            :param self: Instance třídy Dane_pojistenca.
+            :param jmeno: str : Jméno pojištěnce.
+            :param prijmeni: str: Příjmení pojištěnce.
+            :param telefonni_cislo: str: Telefonní číslo pojištěnce.
+            :param vek: int: Věk pojištěnce.
+            """
+
             self._jmeno = jmeno
             self._prijmeni = prijmeni
             self._telefonni_cislo = telefonni_cislo
@@ -44,5 +61,11 @@ class Dane_pojistenca:
             self._vek = novy_vek
 
         def __str__(self):
+            """
+            Vrátí informace o pojištěnci jako formátovaný řetězec.
+
+            :return: str: Formátovaný řetězec s informacemi o pojištěnci.
+            """
+
             return f"{self.jmeno:<10}  {self.prijmeni:<10} {self.telefonni_cislo:<20}  {self.vek:>3}"
 
