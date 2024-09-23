@@ -134,7 +134,7 @@ class Urivatelske_rozhrani:
         if nalezena_osoba:
             print(f"Nalezena osoba: {nalezena_osoba}")
             self.vypis()
-            #return hledane_jmeno,hledane_prijmeni
+            return hledane_jmeno,hledane_prijmeni
         else:
             print(f"Osoba {hledane_jmeno} {hledane_prijmeni} nebyla nalezena.")
         self.vypis()
@@ -144,16 +144,12 @@ class Urivatelske_rozhrani:
         """
         Umožňuje editaci údajů pojištěného. Uživatel zadá jméno a příjmení pro vyhledání osoby,
         a pokud je nalezena, může upravit její údaje, jako je jméno, příjmení, telefonní číslo a věk.
-
-        :return: None
         """
-
-        jmeno,prijmeni = self.ziskani_vstupu_pro_vyhledavani()
-        nalezena_osoba = self.evidence.vyhledani_pojisteneho(jmeno,prijmeni)
+        jmeno, prijmeni = self.ziskani_vstupu_pro_vyhledavani()
+        nalezena_osoba = self.evidence.vyhledani_pojisteneho(jmeno, prijmeni)
 
         if nalezena_osoba:
             while True:
-
                 print("Co chcete upravit?")
                 print("1 - Jméno")
                 print("2 - Příjmení")
@@ -166,23 +162,23 @@ class Urivatelske_rozhrani:
 
                     match volba:
                         case 1:
-                            nove_jmeno = Validace.kontrola_delky_a_typu_dat("nové jméno", pouze_text=True)
+                            nove_jmeno = self.ziskat_platny_vstup("text","nové jméno")
                             nalezena_osoba.jmeno = nove_jmeno
                             print(f"Jméno bylo změněno na {nove_jmeno}.")
                         case 2:
-                            nove_prijmeni = Validace.kontrola_delky_a_typu_dat("nové příjmení", pouze_text=True)
+                            nove_prijmeni = self.ziskat_platny_vstup("text","nové příjmení")
                             nalezena_osoba.prijmeni = nove_prijmeni
                             print(f"Příjmení bylo změněno na {nove_prijmeni}.")
                         case 3:
-                            nove_tel_cislo = Validace.kontrola_delky_a_typu_dat("nové telefonní číslo", pouze_cisla=True)
+                            nove_tel_cislo = self.ziskat_platny_vstup("cislo","nové telefonní číslo")
                             nalezena_osoba.telefonni_cislo = nove_tel_cislo
                             print(f"Telefonní číslo bylo změněno na {nove_tel_cislo}.")
                         case 4:
-                            novy_vek = Validace.kontrola_delky_a_typu_dat("nový věk", pouze_cisla=True)
+                            novy_vek = self.ziskat_platny_vstup("cislo","nový věk")
                             nalezena_osoba.vek = novy_vek
                             print(f"Věk byl změněn na {novy_vek}.")
                         case 5:
-                            print("Upravy byly ukončeny.\n")
+                            print("Úpravy byly ukončeny.\n")
                             break
                         case _:
                             print("Neplatná volba.")

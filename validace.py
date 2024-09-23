@@ -41,10 +41,10 @@ class Validace:
                         print(f"Vstup musí obsahovat pouze písmena.")
                 elif pouze_cisla:
                         # Kontrola, zda je vstup číslice nebo mezery
-                    if re.fullmatch(r'^[0-9\s]+$', vstupni_slovo):  # Povolit pouze číslice a mezery nebo znaky
+                    if re.fullmatch(r'^[0-9\s+]+$', vstupni_slovo):  # Povolit pouze číslice a mezery nebo znaky
                         return True
                     else:
-                        print(f"Vstup musí obsahovat pouze číslice, znaky (-, +, () )")
+                        print(f"Vstup musí obsahovat pouze číslice, znaky (+)")
                 else:
                     # Pokud nejsou specifikovány žádné typy, považujeme vstup za platný
                     return True
