@@ -1,7 +1,7 @@
 import re # import re pro regularni vyrazy
 
 
-class Validator:
+class Validace:
     """
         Utility třída pro validaci vstupních dat.
 
@@ -12,24 +12,25 @@ class Validator:
     @staticmethod
     def kontrola_delky_a_typu_dat(vstupni_slovo, pouze_text = False, pouze_cisla = False):
         """
-               Kontroluje, zda vstupní data mají správnou délku a odpovídají požadovanému typu.
+        Kontroluje, zda vstupní data mají správnou délku a odpovídají požadovanému typu.
 
-               Argumenty:
-               ---------
-               vstupni_slovo (str): Vstupní řetězec, který se má validovat.
-               pouze_text (bool): Pokud je True, ověřuje, že vstup obsahuje pouze písmena a mezery.
-               pouze_cisla (bool): Pokud je True, ověřuje, že vstup obsahuje pouze číslice.
+        :param vstupni_slovo: Vstupní řetězec, který se má validovat.
+        :type vstupni_slovo: str
+        :param pouze_text: Pokud je True, ověřuje, že vstup obsahuje pouze písmena a mezery.
+        :type pouze_text: bool
+        :param pouze_cisla: Pokud je True, ověřuje, že vstup obsahuje pouze číslice.
+        :type pouze_cisla: bool
 
-               Návratová hodnota:
-               -----------------
-               bool: Vrací True, pokud vstup splňuje požadavky na typ a délku. Vrací False v případě chyby.
+        :return: Vrací True, pokud vstup splňuje požadavky na typ a délku; jinak vrací False.
+        :rtype: bool
 
-               Kontrolní podmínky:
-               ------------------
-               - Pokud `pouze_text=True`, vstupní slovo musí obsahovat pouze písmena a mezery.
-               - Pokud `pouze_cisla=True`, vstupní slovo musí obsahovat pouze číslice.
-               - Pokud ani jeden parametr není True,  vstup je považován za platný.
-            """
+        Kontrolní podmínky:
+
+        - Pokud `pouze_text=True`, vstupní slovo musí obsahovat pouze písmena a mezery.
+        - Pokud `pouze_cisla=True`, vstupní slovo musí obsahovat pouze číslice.
+        - Pokud ani jeden parametr není True, vstup je považován za platný.
+        0
+        """
 
         if len(vstupni_slovo) > 0:
                 if pouze_text:

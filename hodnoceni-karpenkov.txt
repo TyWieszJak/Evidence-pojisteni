@@ -4,17 +4,17 @@ Pojmenování identifikátorů - Pojmenování tříd a metod je vhodné a výst
 
 Dodržení principů SRP a SoC - Třída Dane_pojistenca správně spravuje pouze data pojištěnce. Naopak třída Evidence_pojistenych spravuje jak data (přidávání, odebrání, vyhledávání), tak i určité části obchodní logiky, což lehce narušuje princip oddělení zodpovědností (Separation of Concerns). Během refaktorování by bylo lepší oddělit práci s uživatelským vstupem a výstupem do třídy Urivatelske_rozhrani a nechat třídu Evidence_pojistenych spravovat pouze data.
 
-Vhodný výběr datových typů - Výběr datových typů je vhodný. Jmeno, prijmeni a telefonni_cislo jsou řetězce a vek je správně reprezentován jako celé číslo. Validace pro telefonni_cislo povoluje znaky jako ()-+, což může být pro některé případy příliš volné. V případě potřeby lze tuto validaci zpřísnit.
+* Vhodný výběr datových typů - Výběr datových typů je vhodný. Jmeno, prijmeni a telefonni_cislo jsou řetězce a vek je správně reprezentován jako celé číslo. Validace pro telefonni_cislo povoluje znaky jako ()-+, což může být pro některé případy příliš volné. V případě potřeby lze tuto validaci zpřísnit.
 
-Formátování kódu - Kód je dobře formátovaný s jasným odsazením a přehledným rozvržením. Pro lepší organizaci by bylo vhodné třídy rozdělit do samostatných souborů (Dane_pojistenca.py, Evidence_pojistenych.py apod.), což by usnadnilo správu a údržbu kódu.
+* Formátování kódu - Kód je dobře formátovaný s jasným odsazením a přehledným rozvržením. Pro lepší organizaci by bylo vhodné třídy rozdělit do samostatných souborů (Dane_pojistenca.py, Evidence_pojistenych.py apod.), což by usnadnilo správu a údržbu kódu.
 
-Duplicitní kód a nekonečné cykly - Smyčky pro validaci jména, příjmení, věku a telefonního čísla jsou téměř identické. Můžete zvážit refaktorizaci těchto smyček do jedné metody s parametry, která by umožňovala úsporu kódu a snížení redundance.
+* Duplicitní kód a nekonečné cykly - Smyčky pro validaci jména, příjmení, věku a telefonního čísla jsou téměř identické. Můžete zvážit refaktorizaci těchto smyček do jedné metody s parametry, která by umožňovala úsporu kódu a snížení redundance.
 
-Validace vstupních dat - Validace vstupů je dobře implementována a používá třídu Validator, která zajišťuje kontrolu textů a čísel. Validace pro telefonní čísla však může být příliš volná, protože povoluje mnoho znaků. Zvážil bych zpřísnění této validace.
+* Validace vstupních dat - Validace vstupů je dobře implementována a používá třídu Validator, která zajišťuje kontrolu textů a čísel. Validace pro telefonní čísla však může být příliš volná, protože povoluje mnoho znaků. Zvážil bych zpřísnění této validace.
 
 Logičnost a složitost - Logika programu je přehledná a složitost je přiměřená. Doporučuji oddělit logiku uživatelského rozhraní od správy dat, což by zlepšilo čitelnost a testovatelnost kódu.
 
-Komentáře - Komentáře jsou přítomné a vysvětlují funkčnost kódu. Pro zlepšení dokumentace by bylo vhodné použít docstrings, které by poskytly jasnější popisy tříd a metod.
+* Komentáře - Komentáře jsou přítomné a vysvětlují funkčnost kódu. Pro zlepšení dokumentace by bylo vhodné použít docstrings, které by poskytly jasnější popisy tříd a metod.
 
 Celkové hodnocení - Kód je funkční a dobře strukturovaný, ale refaktorizace za účelem oddělení logiky uživatelského rozhraní od správy dat by zlepšila jeho udržovatelnost. Dále doporučuji snížit redundanci v validaci vstupů.
 

@@ -1,5 +1,5 @@
 
-from Seznam_pojistencu import Dane_pojistenca
+from dane_pojistenca import Dane_pojistenca
 
 class Evidence_pojistenych:
     """

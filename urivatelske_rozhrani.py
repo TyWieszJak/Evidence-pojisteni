@@ -1,4 +1,4 @@
-from Validace import Validator
+from validace import Validace
 
 print("-" * 30)
 print(f"{'Evidence pojistenych':>25}")
@@ -91,7 +91,7 @@ class Urivatelske_rozhrani:
 
         while True:
             hodnota = input(f"Zadejte {vstupni_slovo}: ").strip()
-            if Validator.kontrola_delky_a_typu_dat(hodnota, pouze_text=(typ == 'text'), pouze_cisla=(typ == 'cislo')):
+            if Validace.kontrola_delky_a_typu_dat(hodnota, pouze_text=(typ == 'text'), pouze_cisla=(typ == 'cislo')):
                 return hodnota
 
 
@@ -166,19 +166,19 @@ class Urivatelske_rozhrani:
 
                     match volba:
                         case 1:
-                            nove_jmeno = Validator.kontrola_delky_a_typu_dat("nové jméno", pouze_text=True)
+                            nove_jmeno = Validace.kontrola_delky_a_typu_dat("nové jméno", pouze_text=True)
                             nalezena_osoba.jmeno = nove_jmeno
                             print(f"Jméno bylo změněno na {nove_jmeno}.")
                         case 2:
-                            nove_prijmeni = Validator.kontrola_delky_a_typu_dat("nové příjmení", pouze_text=True)
+                            nove_prijmeni = Validace.kontrola_delky_a_typu_dat("nové příjmení", pouze_text=True)
                             nalezena_osoba.prijmeni = nove_prijmeni
                             print(f"Příjmení bylo změněno na {nove_prijmeni}.")
                         case 3:
-                            nove_tel_cislo = Validator.kontrola_delky_a_typu_dat("nové telefonní číslo", pouze_cisla=True)
+                            nove_tel_cislo = Validace.kontrola_delky_a_typu_dat("nové telefonní číslo", pouze_cisla=True)
                             nalezena_osoba.telefonni_cislo = nove_tel_cislo
                             print(f"Telefonní číslo bylo změněno na {nove_tel_cislo}.")
                         case 4:
-                            novy_vek = Validator.kontrola_delky_a_typu_dat("nový věk", pouze_cisla=True)
+                            novy_vek = Validace.kontrola_delky_a_typu_dat("nový věk", pouze_cisla=True)
                             nalezena_osoba.vek = novy_vek
                             print(f"Věk byl změněn na {novy_vek}.")
                         case 5:

@@ -1,5 +1,5 @@
-from Sprava_pojistencu import Evidence_pojistenych
-from Urivatelske_prostredi import Urivatelske_rozhrani
+from evidence_pojistenych import Evidence_pojistenych
+from urivatelske_rozhrani import Urivatelske_rozhrani
 
 if __name__ == "__main__":
     seznam =  []
