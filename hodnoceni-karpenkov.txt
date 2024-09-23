@@ -19,3 +19,9 @@ Logičnost a složitost - Logika programu je přehledná a složitost je přimě
 Celkové hodnocení - Kód je funkční a dobře strukturovaný, ale refaktorizace za účelem oddělení logiky uživatelského rozhraní od správy dat by zlepšila jeho udržovatelnost. Dále doporučuji snížit redundanci v validaci vstupů.
 
 Doporučujeme případné výtky v kódu opravit, abyste jej mohli pak prezentovat budoucímu zaměstnavateli v co nejlepší kvalitě. Pokud byste potřebovali s čímkoli pomoci, naplánujte si s námi konzultaci, rádi vám poradíme!
+
+"""
+zkusit omezit smycky while True
+zkusit pouzit pouze anglicky jazyk
+predelat sparvu pojistencu aby vracel jen vysledek a ne pracoval z vstupem
+"""
