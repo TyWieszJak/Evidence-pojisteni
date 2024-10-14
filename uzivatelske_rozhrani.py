@@ -42,11 +42,11 @@ class Uzivatelske_rozhrani:
         while True :
 
             print("Vyberte si akci:")
-            print("1 - Pridat nového pojisteného")
-            print("2 - Vypsat vsechny pojistené")
-            print("3 - Vyhledat pojisteného")
-            print("4 - Odebrani pojisteného")
-            print("5 - Editace pojisteného")
+            print("1 - Přidat nového pojištěného")
+            print("2 - Vypsat všechny pojištěné")
+            print("3 - Vyhledat pojištěného")
+            print("4 - Odebrat pojištěného")
+            print("5 - Editovat pojištěného")
             print("6 - Konec")
 
             try:
