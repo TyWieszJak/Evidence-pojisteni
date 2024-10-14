@@ -40,7 +40,6 @@ class Uzivatelske_rozhrani:
         """
 
         while True :
-
             print("Vyberte si akci:")
             print("1 - Přidat nového pojištěného")
             print("2 - Vypsat všechny pojištěné")
@@ -48,7 +47,6 @@ class Uzivatelske_rozhrani:
             print("4 - Odebrat pojištěného")
             print("5 - Editovat pojištěného")
             print("6 - Konec")
-
             try:
                 volba = int(input())
 
